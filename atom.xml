@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-03T16:04:03.891Z</updated>
+  <updated>2018-05-04T03:52:23.371Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,53 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title></title>
+    <link href="http://yoursite.com/2018/05/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9F%A5%E8%AF%86/"/>
+    <id>http://yoursite.com/2018/05/04/多线程知识/</id>
+    <published>2018-05-04T03:52:30.215Z</published>
+    <updated>2018-05-04T03:52:23.371Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><h2 id="线程基础"><a href="#线程基础" class="headerlink" title="线程基础"></a>线程基础</h2><h4 id="线程7种状态"><a href="#线程7种状态" class="headerlink" title="线程7种状态"></a>线程7种状态</h4><ol><li>新建</li><li>可运行</li><li>运行</li><li>死亡</li><li>等待队列</li><li>锁池</li><li>阻塞</li></ol><h4 id="线程状态转换"><a href="#线程状态转换" class="headerlink" title="线程状态转换"></a>线程状态转换</h4><ol><li><p>新建(new): 新创建了线程对象</p></li><li><p>可运行(runnable):线程对象创建后,其他线程 调用了该对象的start()方法,该状态的线程处理可执行线程池中,等待被线程调度(OS)选中,获取cpu使用权</p></li><li><p>运行状态(running):可运行状态的线程获得了cpu 时间片,执行代码</p></li><li><p>阻塞(block):线程因为某种原因放弃了cpu使用权,让出了时间片,暂时停止运行.直到线程进入可运行状态,才有机会再次获取时间片进入运行状态.阻塞情况分为三种:<br>1).等待阻塞:运行线程调用了 wait()方法,JVM把线程放入了等待队列(waitting queue)中</p><p>2).同步阻塞:运行的线程获取对象的同步锁时,若该同步锁被别的线程占用,则JVM会把该线程放入到锁池(lock pool) 中<br>3).其他阻塞:运行线程 执行 Thread.sleep(long ms)或者t.join()方法时,或者发出I/O请求时,JVM会把该线程设置为阻塞状态.<br>当sleep()状态超时,join()等待线程终止或超时,或者I/O处理完毕,线程重新转入可执行状态.</p></li><li><p>死亡(dead)：线程run()、main() 方法执行结束，或者因异常退出了run()方法，则该线程结束生命周期。</p></li></ol><h2 id="线程状态图解"><a href="#线程状态图解" class="headerlink" title="线程状态图解"></a>线程状态图解</h2><p><img src="http://static.oschina.net/uploads/space/2013/0621/174442_0BNr_182175.jpg" alt="img"> </p><h2 id="ThreadPool四种线程池"><a href="#ThreadPool四种线程池" class="headerlink" title="ThreadPool四种线程池"></a>ThreadPool四种线程池</h2><h4 id="为什么使用线程池呢"><a href="#为什么使用线程池呢" class="headerlink" title="为什么使用线程池呢 ?"></a>为什么使用线程池呢 ?</h4><p>因为newTread有很多弊端。</p><ol><li>新建对象性能差；</li><li>线程之间缺乏统一管理，可能无限创建线程，相互之间竞争会带来过多的系统损耗,到最后司机或者oom</li><li>缺乏更多的功能，例如定时执行，定期执行，线程中断，可以基本理解为线程池扩展许多新功能；</li></ol><h4 id="缓存线程池-newCachedThreadPool"><a href="#缓存线程池-newCachedThreadPool" class="headerlink" title="缓存线程池 newCachedThreadPool"></a>缓存线程池 newCachedThreadPool</h4><pre><code>创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收， 则新建线程；</code></pre><h4 id="定长线程池-newFixedThreadPool"><a href="#定长线程池-newFixedThreadPool" class="headerlink" title="定长线程池  newFixedThreadPool"></a>定长线程池  newFixedThreadPool</h4><p>​     创建一个定长线程池，可控制线程最大并发数，超出的线程会在你队列中等待  线程池的大小一旦达到最大值就会保持不变，如果某个线程因为执行异常而结束，那么线程池会补充一个新线程。</p><h4 id="单线程线程池-singleThreadPoll"><a href="#单线程线程池-singleThreadPoll" class="headerlink" title="单线程线程池 singleThreadPoll"></a>单线程线程池 singleThreadPoll</h4><pre><code>创建一个定长的线程池，支持定时即周期性任务执行 </code></pre><h4 id="定时线程池-newScheduledThreadPool"><a href="#定时线程池-newScheduledThreadPool" class="headerlink" title="定时线程池 newScheduledThreadPool"></a>定时线程池 newScheduledThreadPool</h4><pre><code>创建一个单线程化的线程池，它只会用唯一 的工作线程来执行任务，保证所有    任务按照指定顺序（FIFO）执行，如果这个唯一的线程因为异常结束，那么会有一个新的线程来替代它。此线程池保证所有任务的执行顺序按照任务的提交顺序执行</code></pre><h3 id="CAS操作"><a href="#CAS操作" class="headerlink" title="CAS操作"></a>CAS操作</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;多线程&quot;&gt;&lt;a href=&quot;#多线程&quot; class=&quot;headerlink&quot; title=&quot;多线程&quot;&gt;&lt;/a&gt;多线程&lt;/h1&gt;&lt;h2 id=&quot;线程基础&quot;&gt;&lt;a href=&quot;#线程基础&quot; class=&quot;headerlink&quot; title=&quot;线程基础&quot;&gt;&lt;/a&gt;线程基
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2018/05/04/redis/"/>
+    <id>http://yoursite.com/2018/05/04/redis/</id>
+    <published>2018-05-04T03:15:10.919Z</published>
+    <updated>2018-05-04T03:14:52.946Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h2 id="redis基础"><a href="#redis基础" class="headerlink" title="redis基础"></a>redis基础</h2><h4 id="redis五大类型"><a href="#redis五大类型" class="headerlink" title="redis五大类型"></a>redis五大类型</h4><p>字符串(String),哈希/散列/字典(Hash) ,列表(List),集合(Set),有序集合(sorted set).</p><p>redisTemplate中操做总括:<br>redisTemplate.optForValue();//操做<br>redisTemplate.optForHash();//操做<br>redisTemplate.optForList();//操做<br>redisTemplate.optForSet();//操做<br>redisTemplate.optForZSet();//操做 </p><h2 id="redis集群"><a href="#redis集群" class="headerlink" title="redis集群"></a>redis集群</h2><h4 id="Redis-Cluster集群-3-0版本开始正式提供"><a href="#Redis-Cluster集群-3-0版本开始正式提供" class="headerlink" title="Redis Cluster集群.3.0版本开始正式提供"></a>Redis Cluster集群.3.0版本开始正式提供</h4><p>其结构特点：</p><p>​     1、所有的redis节点彼此互联(PING-PONG机制),内部使用二进制协议优化传输速度和带宽。<br>     2、节点的fail是通过集群中超过半数的节点检测失效时才生效。<br>     3、客户端与redis节点直连,不需要中间proxy层.客户端不需要连接集群所有节点,连接集群中任何一个可用节点即可。<br>     4、redis-cluster把所有的物理节点映射到[0-16383]slot上（不一定是平均分配）,cluster 负责维护node<->slot<->value。</-></-></p><p>​     5、Redis集群预分好16384个桶，当需要在 Redis 集群中放置一个 key-value 时，根据 CRC16(key) mod 16384的值，决定将一个key放到哪个桶中。</p><h4 id="Redis-Cluster主从模式"><a href="#Redis-Cluster主从模式" class="headerlink" title="Redis Cluster主从模式"></a>Redis Cluster主从模式</h4><pre><code>redis cluster 为了保证数据的高可用性，加入了主从模式，一个主节点对应一个或多个从节点，主节点提供数据存取，从节点则是从主节点拉取数据备份，当这个主节点挂掉后，就会有这个从节点选取一个来充当主节点，从而保证集群不会挂掉。 </code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Redis&quot;&gt;&lt;a href=&quot;#Redis&quot; class=&quot;headerlink&quot; title=&quot;Redis&quot;&gt;&lt;/a&gt;Redis&lt;/h1&gt;&lt;h2 id=&quot;redis基础&quot;&gt;&lt;a href=&quot;#redis基础&quot; class=&quot;headerlink&quot; title=
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>hexo+github博客搭建</title>
     <link href="http://yoursite.com/2018/04/28/hexo-github/"/>
     <id>http://yoursite.com/2018/04/28/hexo-github/</id>
     <published>2018-04-28T08:29:49.000Z</published>
-    <updated>2018-05-03T16:04:03.891Z</updated>
+    <updated>2018-05-03T16:07:16.114Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Hexo博客搭建优势"><a href="#Hexo博客搭建优势" class="headerlink" title="Hexo博客搭建优势"></a>Hexo博客搭建优势</h2><ol><li>无需域名和服务器就能挂在外网</li><li>搭建快速 分分钟钟搞定(ps:前提你家伙事齐全)</li><li>样式选择自由,可以自己选择主题(ps:我个人就有选择困难综合征)</li></ol><h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><p>大致可以分为以下几个步骤:</p><ol><li>准备环境(Git,nodejs,Github账户,hexo)</li><li>部署到Github Page 上</li><li>选择主题</li><li>添加插件</li></ol><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>针对windows环境</p><ol><li><p>点击<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">安装Git</a></p><p>Git Path 选择 use Git from the Windows Command Prompt<br>控制台执行 git –version 确认是否安装成功</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;你的名字&quot;</span><br><span class="line">git config --global user.email &quot;你的邮箱&quot;</span><br><span class="line">ssh-keygen -t rsa -C &quot;你的邮箱&quot;//一路确定,C:\Users\用户\.ssh\id_rsa.pub</span><br></pre></td></tr></table></figure></li><li><p>点击<a href="http://nodejs.cn/download/" target="_blank" rel="noopener">安装Node.js</a></p><p>Node.js安装之后自动安装了npm 控制台执行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure></li><li><p>安装Hexo</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo --save</span><br><span class="line">npm install hexo-deployer-git --save//安装hexo git扩展 以便hexo d</span><br><span class="line">npm install hexo-generator-feed -save</span><br><span class="line">npm install hexo-generator-sitemap -save</span><br><span class="line">hexo -v  //查看版本</span><br><span class="line">hexo init //初始化Hexo</span><br><span class="line">npm install   //安装所需要的插件</span><br><span class="line">hexo g//生成hexo html文件</span><br><span class="line">hexo s//启动hexo INFO Hexo is running at http://localhost:4000/.</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">##Hexo 常用命令</span><br><span class="line">hexo g##生成</span><br><span class="line">hexo s##启动</span><br><span class="line">hexo d##部署 需要在_config.yml中 deploy: 配置 git和github地址 </span><br><span class="line">hexo d -g##生成之后部署  需要在_config.yml中 deploy: 配置 git和github地址</span><br></pre></td></tr></table></figure></li><li><p>点击<a href="https://github.com/" target="_blank" rel="noopener">去准备Github账户</a><br>创建 yourname.github.io的仓库,仓库名字必须是 <strong>你用户名.github.io</strong>.否则github无法给你分配相应的域名.<br>项目的settings –&gt;GitHub Pages–&gt;Choose theme 选 Choose a theme 随便选择一个主题 https://你的用户名.github.io就能访问了.<br>将前面git生成的C:\Users\用户.ssh\id_rsa.pub 添加到github的用户–&gt;settings–&gt;SSH and GPG keys–&gt;New SSH key<br>本地执行 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br><span class="line">yes</span><br></pre></td></tr></table></figure><p>这样你Git提交到GItHub就不用密码了.</p></li></ol><h2 id="配置Hexo"><a href="#配置Hexo" class="headerlink" title="配置Hexo"></a>配置Hexo</h2><ol><li><p>主题配置<br>我本人用的yilia,你也可以自行搜索主题  <a href="https://www.zhihu.com/question/24422335" target="_blank" rel="noopener">主题</a><br>$ git clone <a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="noopener">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia<br>在hexo的根目录下_config.yml配置文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: yilia    //默认为landscape</span><br></pre></td></tr></table></figure></li><li><p>配置deployment</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:yun79831/yun79831.github.io.git    //换成你自己的刚才生成的github仓库地址</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></li></ol><h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><ol><li>流量插件</li><li>评论插件</li></ol><p>先写到这…</p>]]></content>
     

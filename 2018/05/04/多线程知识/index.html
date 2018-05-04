@@ -6,16 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | voidGhost个人博客</title>
+  <title>voidGhost个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="博客">
-<meta property="og:type" content="website">
+  <meta name="description" content="多线程线程基础线程7种状态 新建 可运行 运行 死亡 等待队列 锁池 阻塞  线程状态转换 新建(new): 新创建了线程对象  可运行(runnable):线程对象创建后,其他线程 调用了该对象的start()方法,该状态的线程处理可执行线程池中,等待被线程调度(OS)选中,获取cpu使用权  运行状态(running):可运行状态的线程获得了cpu 时间片,执行代码  阻塞(block):线程">
+<meta name="keywords" content="博客">
+<meta property="og:type" content="article">
 <meta property="og:title" content="voidGhost个人博客">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/05/04/多线程知识/index.html">
 <meta property="og:site_name" content="voidGhost个人博客">
+<meta property="og:description" content="多线程线程基础线程7种状态 新建 可运行 运行 死亡 等待队列 锁池 阻塞  线程状态转换 新建(new): 新创建了线程对象  可运行(runnable):线程对象创建后,其他线程 调用了该对象的start()方法,该状态的线程处理可执行线程池中,等待被线程调度(OS)选中,获取cpu使用权  运行状态(running):可运行状态的线程获得了cpu 时间片,执行代码  阻塞(block):线程">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2013/0621/174442_0BNr_182175.jpg">
+<meta property="og:updated_time" content="2018-05-04T03:52:23.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="voidGhost个人博客">
+<meta name="twitter:description" content="多线程线程基础线程7种状态 新建 可运行 运行 死亡 等待队列 锁池 阻塞  线程状态转换 新建(new): 新创建了线程对象  可运行(runnable):线程对象创建后,其他线程 调用了该对象的start()方法,该状态的线程处理可执行线程池中,等待被线程调度(OS)选中,获取cpu使用权  运行状态(running):可运行状态的线程获得了cpu 时间片,执行代码  阻塞(block):线程">
+<meta name="twitter:image" content="http://static.oschina.net/uploads/space/2013/0621/174442_0BNr_182175.jpg">
   
     <link rel="alternative" href="/atom.xml" title="voidGhost个人博客" type="application/atom+xml">
   
@@ -151,148 +157,175 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-多线程知识" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+ 
     
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><h2 id="线程基础"><a href="#线程基础" class="headerlink" title="线程基础"></a>线程基础</h2><h4 id="线程7种状态"><a href="#线程7种状态" class="headerlink" title="线程7种状态"></a>线程7种状态</h4><ol>
+<li>新建</li>
+<li>可运行</li>
+<li>运行</li>
+<li>死亡</li>
+<li>等待队列</li>
+<li>锁池</li>
+<li>阻塞</li>
+</ol>
+<h4 id="线程状态转换"><a href="#线程状态转换" class="headerlink" title="线程状态转换"></a>线程状态转换</h4><ol>
+<li><p>新建(new): 新创建了线程对象</p>
+</li>
+<li><p>可运行(runnable):线程对象创建后,其他线程 调用了该对象的start()方法,该状态的线程处理可执行线程池中,等待被线程调度(OS)选中,获取cpu使用权</p>
+</li>
+<li><p>运行状态(running):可运行状态的线程获得了cpu 时间片,执行代码</p>
+</li>
+<li><p>阻塞(block):线程因为某种原因放弃了cpu使用权,让出了时间片,暂时停止运行.直到线程进入可运行状态,才有机会再次获取时间片进入运行状态.阻塞情况分为三种:<br>1).等待阻塞:运行线程调用了 wait()方法,JVM把线程放入了等待队列(waitting queue)中</p>
+<p>2).同步阻塞:运行的线程获取对象的同步锁时,若该同步锁被别的线程占用,则JVM会把该线程放入到锁池(lock pool) 中<br>3).其他阻塞:运行线程 执行 Thread.sleep(long ms)或者t.join()方法时,或者发出I/O请求时,JVM会把该线程设置为阻塞状态.<br>当sleep()状态超时,join()等待线程终止或超时,或者I/O处理完毕,线程重新转入可执行状态.</p>
+</li>
+<li><p>死亡(dead)：线程run()、main() 方法执行结束，或者因异常退出了run()方法，则该线程结束生命周期。</p>
+</li>
+</ol>
+<h2 id="线程状态图解"><a href="#线程状态图解" class="headerlink" title="线程状态图解"></a>线程状态图解</h2><p><img src="http://static.oschina.net/uploads/space/2013/0621/174442_0BNr_182175.jpg" alt="img"> </p>
+<h2 id="ThreadPool四种线程池"><a href="#ThreadPool四种线程池" class="headerlink" title="ThreadPool四种线程池"></a>ThreadPool四种线程池</h2><h4 id="为什么使用线程池呢"><a href="#为什么使用线程池呢" class="headerlink" title="为什么使用线程池呢 ?"></a>为什么使用线程池呢 ?</h4><p>因为newTread有很多弊端。</p>
+<ol>
+<li>新建对象性能差；</li>
+<li>线程之间缺乏统一管理，可能无限创建线程，相互之间竞争会带来过多的系统损耗,到最后司机或者oom</li>
+<li>缺乏更多的功能，例如定时执行，定期执行，线程中断，可以基本理解为线程池扩展许多新功能；</li>
+</ol>
+<h4 id="缓存线程池-newCachedThreadPool"><a href="#缓存线程池-newCachedThreadPool" class="headerlink" title="缓存线程池 newCachedThreadPool"></a>缓存线程池 newCachedThreadPool</h4><pre><code>创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收， 则新建线程；
+</code></pre><h4 id="定长线程池-newFixedThreadPool"><a href="#定长线程池-newFixedThreadPool" class="headerlink" title="定长线程池  newFixedThreadPool"></a>定长线程池  newFixedThreadPool</h4><p>​     创建一个定长线程池，可控制线程最大并发数，超出的线程会在你队列中等待  线程池的大小一旦达到最大值就会保持不变，如果某个线程因为执行异常而结束，那么线程池会补充一个新线程。</p>
+<h4 id="单线程线程池-singleThreadPoll"><a href="#单线程线程池-singleThreadPoll" class="headerlink" title="单线程线程池 singleThreadPoll"></a>单线程线程池 singleThreadPoll</h4><pre><code>创建一个定长的线程池，支持定时即周期性任务执行 
+</code></pre><h4 id="定时线程池-newScheduledThreadPool"><a href="#定时线程池-newScheduledThreadPool" class="headerlink" title="定时线程池 newScheduledThreadPool"></a>定时线程池 newScheduledThreadPool</h4><pre><code>创建一个单线程化的线程池，它只会用唯一 的工作线程来执行任务，保证所有    任务按照指定顺序（FIFO）执行，如果这个唯一的线程因为异常结束，那么会有一个新的线程来替代它。此线程池保证所有任务的执行顺序按照任务的提交顺序执行
+</code></pre><h3 id="CAS操作"><a href="#CAS操作" class="headerlink" title="CAS操作"></a>CAS操作</h3>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/04/多线程知识/" class="archive-article-date">
-  	<time datetime="2018-05-04T03:52:30.215Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-04</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/04/多线程知识/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/04/redis/" class="archive-article-date">
-  	<time datetime="2018-05-04T03:15:10.919Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/04/redis/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/28/hexo-github/" class="archive-article-date">
-  	<time datetime="2018-04-28T08:29:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-28</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/28/hexo-github/">hexo+github博客搭建</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/27/hexo插件添加/" class="archive-article-date">
-  	<time datetime="2018-04-27T07:29:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/27/hexo插件添加/">hexo插件添加</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">插件</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -322,8 +355,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
